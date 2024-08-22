@@ -76,8 +76,35 @@ function addTaskAlert(newTask) {
 // 2 - Funcion
 // Agregar elemento en la lista al llenar el formulario
 function addTaskHandler(event) {
+  event.preventDefault();  //no deja recargar la pagina 
 
+  //agarra los valores ingresados en el formulario
+  const nameInput = document.getElementById("nameInput").value;
+  const ownerInput = document.getElementById("ownerInput").value;
+  const descriptionInput = document.getElementById("descriptionInput").value;
+  const imgUrlInput = document.getElementById("imgUrlInput").value;
+
+  // Crear un nuevo objeto de tarea
+  const newTask = {
+    id: currentIdNumber++,
+    name: nameInput,
+    owner: ownerInput,
+    description: descriptionInput,
+    imgUrl: imgUrlInput
+  };
+
+// añade las tareas al array
+  tasks.push(newTask);
+
+  // Crear un nuevo componente de tarea y añadirlo al DOM
+  const taskList = document.querySelector("ul");
+  const newTaskComponent = createTaskComponent(newTask);
+  taskList.appendChild(newTaskComponent);
 }
+
+//Agrega clickeando el boton de submit
+document.querySelector(".main__form").addEventListener("submit", addTaskHandler);
+
 
 // 3 - Funcion
 // Eliminar elemento en la lista al hacer click sobre el elemento
