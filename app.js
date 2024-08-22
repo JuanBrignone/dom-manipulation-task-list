@@ -45,18 +45,38 @@ let currentIdNumber = tasks.length;
 // 0 - Bajar repo, todos los ejercicios seran parte
 // del mismo proyecto js-dom-manipulation-essentials
 // Hacer una funcion que cree dinamicamente las task
-function createTaskComponent(task) {}
+function createTaskComponent(task) {
+  
+  const listItem = document.createElement("li");
+  listItem.classList.add("task-item");
+
+  listItem.innerHTML = `
+    <h4>${task.name} - ${task.owner}</h4>
+    <p>${task.description}</p>
+    <img src="${task.imgUrl}" alt="${task.name} Image" style="max-width: 100px; max-height: 100px;" />
+  `;
+  return listItem;
+}
 
 function loadTasks() {}
+const taskList = document.querySelector(".main__section ul"); 
+
+tasks.forEach(task => {
+  const taskComponent = createTaskComponent(task);
+  taskList.appendChild(taskComponent);
+}); 
 
 // 1 - Funcion
 // Mostrar en un mensaje de alerta los valores del form
-function addTaskAlert(newTask) {}
+function addTaskAlert(newTask) {
+  
+}
 
 // 2 - Funcion
 // Agregar elemento en la lista al llenar el formulario
+function addTaskHandler(event) {
 
-function addTaskHandler(event) {}
+}
 
 // 3 - Funcion
 // Eliminar elemento en la lista al hacer click sobre el elemento
